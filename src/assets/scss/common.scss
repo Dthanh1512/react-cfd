@@ -1,14 +1,12 @@
-.form {
-    label {
-        position: relative;
-        margin-bottom: 40px;
-        .error-text {
-            font-size: 13px;
-            color: red;
-            position: absolute;
-            left: 32%;
-            top: 100%;
-            width: 100% !important;
-        }
+.label {
+    position: relative;
+    margin-bottom: 40px !important;
+    .error-text {
+        font-size: 13px;
+        color: red;
+        position: absolute;
+        left: 32%;
+        top: 100%;
+        width: 100% !important;
     }
 }

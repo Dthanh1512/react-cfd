@@ -60,7 +60,7 @@ export default function Register() {
                             </div>
                         </div>
                         <div className="form">
-                            <label style={{ position: "relative", marginBottom: "40px" }}>
+                            <label className="label">
                                 <p>
                                     Họ và tên<span>*</span>
                                 </p>
@@ -69,7 +69,7 @@ export default function Register() {
                                     error.name && <p className="error-text">{error.name}</p>
                                 }
                             </label>
-                            <label style={{ position: "relative", marginBottom: "40px" }}>
+                            <label className="label">
                                 <p>
                                     Số điện thoại<span>*</span>
                                 </p>
@@ -78,7 +78,7 @@ export default function Register() {
                                     error.phone && <p className="error-text">{error.phone}</p>
                                 }
                             </label>
-                            <label style={{ position: "relative", marginBottom: "40px" }}>
+                            <label className="label">
                                 <p>
                                     Email<span>*</span>
                                 </p>
@@ -87,7 +87,7 @@ export default function Register() {
                                     error.mail && <p className="error-text">{error.mail}</p>
                                 }
                             </label>
-                            <label style={{ position: "relative", marginBottom: "40px" }}>
+                            <label className="label">
                                 <p>
                                     URL Facebook<span>*</span>
                                 </p>

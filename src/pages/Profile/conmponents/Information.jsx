@@ -41,28 +41,28 @@ export default function Information() {
 
     return (
         <div className="tab1">
-            <label>
+            <label className="label">
                 <p>Họ và tên<span>*</span></p>
                 <input onChange={handleInput} value={form.name} name="name" type="text" placeholder="Nguyễn Văn A" />
                 {
                     error.name && <p className="error-text">{error.name}</p>
                 }
             </label>
-            <label>
+            <label className="label">
                 <p>Số điện thoại<span>*</span></p>
                 <input onChange={handleInput} value={form.phone} name="phone" type="text" placeholder="0949******" />
                 {
                     error.name && <p className="error-text">{error.phone}</p>
                 }
             </label>
-            <label>
+            <label className="label">
                 <p>Email<span>*</span></p>
                 <input onChange={handleInput} value={form.email} name="email" defaultValue="vuong.dang@dna.vn" disabled type="text" />
                 {
                     error.name && <p className="error-text">{error.email}</p>
                 }
             </label>
-            <label>
+            <label className="label">
                 <p>Facebook<span>*</span></p>
                 <input onChange={handleInput} value={form.url} type="text" name="url" placeholder="Facebook url" />
                 {
