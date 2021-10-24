@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "../../assets/scss/common.scss"
 
 export default function Register() {
 
@@ -13,19 +14,25 @@ export default function Register() {
         const newObject = { ...form, [name]: value };
         setForm(newObject);
     }
-
+    console.log(form)
     const handleClick = () => {
         let errorObject = {}
-        if (form.name === '') {
+        if (!form.name) {
             errorObject.name = "Vui lòng điền họ tên";
+        } else if (form.name.length <= 8) {
+            errorObject.name = "Tên của bạn phải lớn hơn 8 ký tự!";
         }
-        if (!phonePattern.test(form.phone)) {
+        if (!form.phone) {
+            errorObject.phone = "Vui lòng điền số điện thoại";
+        } else if (!phonePattern.test(form.phone)) {
             errorObject.phone = "Vui lòng nhập đúng định dạng";
         }
-        if (!mailPattern.test(form.mail)) {
+        if (!form.mail) {
+            errorObject.mail = "Vui lòng điền địa chỉ mail";
+        } else if (!mailPattern.test(form.mail)) {
             errorObject.mail = "Vui lòng nhập đúng định dạng mail"
         }
-        if (form.url === '') {
+        if (!form.url) {
             errorObject.url = "Vui lòng điền địa chỉ Facebook"
         }
         setError(errorObject);
@@ -53,40 +60,40 @@ export default function Register() {
                             </div>
                         </div>
                         <div className="form">
-                            <label>
+                            <label style={{ position: "relative", marginBottom: "40px" }}>
                                 <p>
                                     Họ và tên<span>*</span>
                                 </p>
                                 <input onChange={onInputChange} name="name" value={form.name} type="text" placeholder="Họ và tên bạn" />
                                 {
-                                    error.name && <p className="error-text" style={{ color: "red", fontSize: "13px" }} >{error.name}</p>
+                                    error.name && <p className="error-text">{error.name}</p>
                                 }
                             </label>
-                            <label>
+                            <label style={{ position: "relative", marginBottom: "40px" }}>
                                 <p>
                                     Số điện thoại<span>*</span>
                                 </p>
                                 <input onChange={onInputChange} name="phone" value={form.phone} type="text" placeholder="Số điện thoại" />
                                 {
-                                    error.phone && <p className="error-text" style={{ color: "red", fontSize: "13px" }} >{error.phone}</p>
+                                    error.phone && <p className="error-text">{error.phone}</p>
                                 }
                             </label>
-                            <label>
+                            <label style={{ position: "relative", marginBottom: "40px" }}>
                                 <p>
                                     Email<span>*</span>
                                 </p>
                                 <input onChange={onInputChange} name="mail" value={form.mail} type="text" placeholder="Email của bạn" />
                                 {
-                                    error.mail && <p className="error-text" style={{ color: "red", fontSize: "13px" }} >{error.mail}</p>
+                                    error.mail && <p className="error-text">{error.mail}</p>
                                 }
                             </label>
-                            <label>
+                            <label style={{ position: "relative", marginBottom: "40px" }}>
                                 <p>
                                     URL Facebook<span>*</span>
                                 </p>
                                 <input onChange={onInputChange} name="url" value={form.url} type="text" placeholder="https://facebook.com" />
                                 {
-                                    error.url && <p className="error-text" style={{ color: "red", fontSize: "13px" }}>{error.url}</p>
+                                    error.url && <p className="error-text">{error.url}</p>
                                 }
                             </label>
                             <label className="disable">
@@ -133,6 +140,6 @@ export default function Register() {
       </div>
       <a href="/" class="btn main rect">về trang chủ</a>
   </div> */}
-        </main>
+        </main >
     )
 }

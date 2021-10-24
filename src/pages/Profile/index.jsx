@@ -3,10 +3,12 @@ import YourCourse from "./conmponents/YourCourse";
 import Project from "./conmponents/Project";
 import HistoryPay from "./conmponents/HistoryPay";
 import YourCoin from "./conmponents/YourCoin";
-
+import { Switch, Route, useRouteMatch, NavLink } from "react-router-dom"
 
 export default function Profile() {
+    let { url } = useRouteMatch();
     return (
+
         <main className="profile" id="main">
             <section>
                 <div className="top-info">
@@ -21,18 +23,20 @@ export default function Profile() {
                 <div className="container">
                     <div className="tab">
                         <div className="tab-title">
-                            <a href="#" className="active">Thông tin tài khoản</a>
-                            <a href="#">Khóa học của bạn</a>
-                            <a href="#">Dự án đã làm</a>
-                            <a href="#">Lịch sử thanh toán</a>
-                            <a href="#">Quản lý COIN của tôi</a>
+                            <NavLink to={`${url}`} exact>Thông tin tài khoản</NavLink>
+                            <NavLink to={`${url}/your-course`}>Khóa học của bạn</NavLink>
+                            <NavLink to={`${url}/project`}>Dự án đã làm</NavLink>
+                            <NavLink to={`${url}/history-pay`}>Lịch sử thanh toán</NavLink>
+                            <NavLink to={`${url}/your-coin`}>Quản lý COIN của tôi</NavLink>
                         </div>
                         <div className="tab-content">
-                            <Information />
-                            <YourCourse />
-                            <Project />
-                            <HistoryPay />
-                            <YourCoin />
+                            <Switch>
+                                <Route path={`${url}`} exact component={Information} />
+                                <Route path={`${url}/your-course`} component={YourCourse} />
+                                <Route path={`${url}/project`} component={Project} />
+                                <Route path={`${url}/history-pay`} component={HistoryPay} />
+                                <Route path={`${url}/your-coin`} component={YourCoin} />
+                            </Switch>
                         </div>
                     </div>
                 </div>
