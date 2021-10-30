@@ -3,10 +3,14 @@ import YourCourse from "./conmponents/YourCourse";
 import Project from "./conmponents/Project";
 import HistoryPay from "./conmponents/HistoryPay";
 import YourCoin from "./conmponents/YourCoin";
-import { Switch, Route, useRouteMatch, NavLink } from "react-router-dom"
+import { Switch, Route, useRouteMatch, NavLink, Redirect } from "react-router-dom"
+import { useAuth } from "../../hooks/useAuth";
+
 
 export default function Profile() {
     let { url } = useRouteMatch();
+    let { user } = useAuth();
+
     return (
 
         <main className="profile" id="main">

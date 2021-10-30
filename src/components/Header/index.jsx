@@ -1,5 +1,14 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { MainContext } from "../../App";
+import { Context } from "../../hooks/useAuth";
+
+
 export function Header() {
+    let { user, logout, togglePopupLogin } = useContext(MainContext);
+
     return (
+
         <header id="header">
             <div className="wrap">
                 <div className="menu-hambeger">
@@ -15,10 +24,10 @@ export function Header() {
                     <h1>CFD</h1>
                 </a>
                 <div className="right">
-                    <div className="have-login">
+                    {user ? (<div className="have-login">
                         <div className="account">
                             <a href="#" className="info">
-                                <div className="name">Trần Lê Trọng Nghĩa</div>
+                                <div className="name">{user.name}</div>
                                 <div className="avatar">
                                     <img src="/img/avt.png" alt />
                                 </div>
@@ -26,15 +35,15 @@ export function Header() {
                         </div>
                         <div className="hamberger"></div>
                         <div className="sub">
-                            <a href="#">Khóa học của tôi</a>
-                            <a href="#">Thông tin tài khoản</a>
-                            <a href="#">Đăng xuất</a>
+                            <a href="#">Khoá học của tôi</a>
+                            <Link to="/profile">Thông tin tài khoản</Link>
+                            <Link to="#" onClick={(ev) => { ev.preventDefault(); logout() }}>Đăng xuất</Link>
                         </div>
-                    </div>
-                    {/* <div class="not-login bg-none">
-                    <a href="#" class="btn-register">Đăng nhập</a>
-                    <a href="login.html" class="btn main btn-open-login">Đăng ký</a>
-                </div> */}
+                    </div>) :
+                        (<div class="not-login bg-none">
+                            <a href="#" class="btn-register" onClick={e => { e.preventDefault(); togglePopupLogin(true) }}>Đăng nhập</a>
+                            <a href="login.html" class="btn main btn-open-login">Đăng ký</a>
+                        </div>)}
                 </div>
             </div>
         </header>
