@@ -1,54 +1,19 @@
 import { useState } from "react"
+import { useParams } from "react-router";
 import "../../assets/scss/common.scss"
 import { useForm } from "../../hooks/useForm";
+import homeApi from "../../services/courseServices";
 
 export default function Register() {
-    // LocalStorage
-    // let [state, setState] = useInputLocalStorage("name");
-
-
-
-    // const [form, setForm] = useState({});
-    // const [error, setError] = useState({});
-    // let mailPattern =
-    //     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
-    // let phonePattern = /^ [\+] ? [(] ? [0 - 9]{ 3}[)]?[-\s\.]?[0 - 9]{ 3 } [-\s\.] ? [0 - 9]{ 4, 6 } $/;
-    // const onInputChange = (event) => {
-    //     const value = event.target.value;
-    //     const name = event.target.name;
-    //     const newObject = { ...form, [name]: value };
-    //     setForm(newObject);
-    // }
-    // console.log(form)
-    // const handleClick = () => {
-    //     let errorObject = {}
-    //     if (!form.name) {
-    //         errorObject.name = "Vui lòng điền họ tên";
-    //     } else if (form.name.length <= 8) {
-    //         errorObject.name = "Tên của bạn phải lớn hơn 8 ký tự!";
-    //     }
-    //     if (!form.phone) {
-    //         errorObject.phone = "Vui lòng điền số điện thoại";
-    //     } else if (!phonePattern.test(form.phone)) {
-    //         errorObject.phone = "Vui lòng nhập đúng định dạng";
-    //     }
-    //     if (!form.mail) {
-    //         errorObject.mail = "Vui lòng điền địa chỉ mail";
-    //     } else if (!mailPattern.test(form.mail)) {
-    //         errorObject.mail = "Vui lòng nhập đúng định dạng mail"
-    //     }
-    //     if (!form.url) {
-    //         errorObject.url = "Vui lòng điền địa chỉ Facebook"
-    //     }
-    //     setError(errorObject);
-    //     if (Object.keys(errorObject).length === 0) {
-    //         alert("Thành công")
-    //     }
-    // }
+    let { id } = useParams();// lấy nhanh gía trị
 
     let { form, register, handleSubmit, error } = useForm();
 
-    const submit = (form) => {
+    const submit = async (form) => {
+        let res = await homeApi.register(
+            id,
+            form,
+        )
 
     }
     return (
@@ -96,9 +61,9 @@ export default function Register() {
                                 <p>
                                     Email<span>*</span>
                                 </p>
-                                <input {...register('mail')} type="text" placeholder="Email của bạn" />
+                                <input {...register('email')} type="text" placeholder="Email của bạn" />
                                 {
-                                    error.mail && <p className="error-text">{error.mail}</p>
+                                    error.email && <p className="error-text">{error.email}</p>
                                 }
                             </label>
                             <label className="label">

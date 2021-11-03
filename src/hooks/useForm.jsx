@@ -1,9 +1,8 @@
 import { useState } from "react";
 
 
-let mailPattern =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
-let phonePattern = /^ [\+] ? [(] ? [0 - 9]{ 3}[)]?[-\s\.]?[0 - 9]{ 3 } [-\s\.] ? [0 - 9]{ 4, 6 } $/;
+let mailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+let phonePattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/g;
 
 export const useForm = (invitVlaue = {}) => {
     const [form, setForm] = useState(invitVlaue);
@@ -28,7 +27,7 @@ export const useForm = (invitVlaue = {}) => {
                 let pattern = r.pattern;
                 if (r.pattern === "phone") pattern = phonePattern;
                 if (r.pattern === "mail") pattern = mailPattern;
-                if (!pattern.test(form[i])) {
+                if (typeof pattern.test !== 'undefined' && !pattern.test(form[i])) {
                     errorObject[i] = "Giá trị này không đúng định dạng"
                 }
             }

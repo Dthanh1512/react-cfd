@@ -27,9 +27,9 @@ export function Header() {
                     {user ? (<div className="have-login">
                         <div className="account">
                             <a href="#" className="info">
-                                <div className="name">{user.name}</div>
+                                <div className="name">{user.title}</div>
                                 <div className="avatar">
-                                    <img src="/img/avt.png" alt />
+                                    <img src={user?.avatar?.link} alt="" />
                                 </div>
                             </a>
                         </div>

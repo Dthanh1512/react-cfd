@@ -42,8 +42,10 @@ function App() {
     // })
     //   //luu localstorage
     if (res.data) {
+
       setUser(res.data)
       localStorage.setItem('login', JSON.stringify(res.data))
+      localStorage.setItem('token', JSON.stringify(res.data.token))
     }
   }
 
@@ -65,7 +67,7 @@ function App() {
           <Route path='/project' component={Project} />
           <Route path='/course-detail' component={CourseDetail} />
           <Route path='/team' component={Team} />
-          <Route path='/register' component={Register} />
+          <Route path='/register/:id' component={Register} />
           <Route path='/courses' component={Courses} />
           <Route path='/cooperate' component={Cooperate} />
           <Route><Page404 /></Route>

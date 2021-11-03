@@ -20,12 +20,7 @@ export default function CourseList(props) {
                     {
                         props.list.map((value, key) => (
                             <CourseItem
-                                name={value.name}
-                                description={value.description}
-                                teacher={value.teacher}
-                                status={value.status}
-                                person={value.person}
-                                like={value.like}
+                                {...value}
                             />
                         ))
                     }

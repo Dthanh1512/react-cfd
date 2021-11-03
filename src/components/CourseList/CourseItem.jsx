@@ -1,29 +1,19 @@
 
-
-function CourseList({ name, teacher, status, description, like, person }) {
-    var statusHas = status;
-    if (status === "Đã kết thúc") {
-        statusHas = <span className="badge b1">Đã kết thúc</span>
-    }
-    if (status === "Đang diễn ra") {
-        statusHas = <span className="badge b2">Đang diễn ra</span>
-    }
-    if (status === "Sắp khai giảng") {
-        statusHas = <span className="badge b3">Sắp khai giảng</span>
-    }
+function CourseList(props) {
+    let badgeClass = props.course_status == "sap-khai-gian" ? 'b1' : props.course_status === "dang-dien-ra " ? 'b2' : 'b3'
     return (
         <div className="col-md-4 course">
             <div className="wrap">
                 <a className="cover" href="#">
-                    <img src="/img/img1.png" alt="" />
-                    {statusHas}
+                    <img src={props.thumbnail.link} alt="" />
+                    <span className={`badge ${badgeClass}`}>{props.course_status === "sap-khai-gian" ? "Sắp khai giảng" : props.course_status === "dang-dien-ra" ? "Đang diễn ra" : "Đã kết thúc"}</span>
                     <div className="hover">
                         <div className="top">
                             <div className="user">
                                 <img src="/img/icon-user-white.svg" alt="" />
-                                {person}</div>
+                            </div>
                             <div className="heart">
-                                <img src="/img/icon-heart.svg" alt="" /> {like}
+                                <img src="/img/icon-heart.svg" alt="" />
                             </div>
                         </div>
                         <div className="share">
@@ -33,18 +23,18 @@ function CourseList({ name, teacher, status, description, like, person }) {
                 </a>
                 <div className="info">
                     <a className="name" href="#">
-                        {name}
+                        {props.slug}
                     </a>
                     <p className="des">
-                        {description}
+                        {props.short_description}
                     </p>
                 </div>
                 <div className="bottom">
                     <div className="teacher">
                         <div className="avatar">
-                            <img src="/img/avt.png" alt="" />
+                            <img src={props.teacher.avatar.link} alt="" />
                         </div>
-                        <div className="name">{teacher}</div>
+                        <div className="name">{props.teacher.title}</div>
                     </div>
                     <div className="register-btn">Đăng Ký</div>
                 </div>

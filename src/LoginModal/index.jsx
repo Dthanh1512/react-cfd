@@ -11,8 +11,11 @@ export default function LoginModal() {
     let { register, handleSubmit, error } = useForm();
     let { login, openLogin, togglePopupLogin } = useAuth();
     const submit = (form) => {
+
         login(form)
         togglePopupLogin(false)
+
+
     }
     return (
 
